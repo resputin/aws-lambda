@@ -12,7 +12,11 @@
   "author": "Kim Brandwijk <kim.brandwijk@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "graphql-yoga": "*"
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^5.0.1",
+    "graphql-yoga": "*",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.0.16"
   },
   "devDependencies": {
     "serverless": "1.25.0",

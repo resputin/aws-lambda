@@ -1,4 +1,4 @@
-service: yoga-example 
+service: graphql-api
 
 plugins:
   - serverless-offline

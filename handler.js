@@ -1,51 +1,22 @@
 'use strict';
+require('dotenv').config();
+const mongoose = require('mongoose');
 const { GraphQLServerLambda } = require('graphql-yoga');
-const users = require('./db/users');
+const Query = require('./resolvers/Query');
+const config = require('./config');
+// const Mutation = require('./resolvers/Mutation');
 
-const typeDefs = `
-  type Artist {
-    id: ID!
-    first_name: String
-    last_name: String
-  }
-  type Query {
-    artists: [Artist]
-    artist(id: ID!): Artist
-  }
-  type Mutation {
-    createArtist(
-      first_name: String!
-      last_name: String!
-    ): Artist
-    updateArtist(
-      id: ID!
-      first_name: String!
-      last_name: String!
-    ): Artist
-    deleteArtist(
-      id: ID!
-    ): Artist
-  }
-`;
-
+const start = async () => {
+  const mongoClient = await mongoose.connect(config.MONGO_DB_URL);
+};
+start();
 const resolvers = {
-  Query: {
-    artists: () => users.getUsers(),
-    artist: (_, args) => users.getUser(args.id),
-  },
-  // Mutation: {
-  //   createArtist: (_, args) => dbArtists.createArtist(args),
-  //   updateArtist: (_, args) => dbArtists.updateArtist(args),
-  //   deleteArtist: (_, args) => dbArtists.deleteArtist(args)
-  // },
-  // Artist: {
-  //   songs: artist => dbSongs.getSongsByArtist(artist.id)
-  // }
+  Query
 };
 
 const lambda = new GraphQLServerLambda({
-  typeDefs,
-  resolvers
+  typeDefs: './schema.graphql',
+  resolvers,
 });
 
 exports.server = lambda.graphqlHandler;

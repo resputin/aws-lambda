@@ -1,0 +1,37 @@
+type User {
+  id: ID!
+  email: String!
+  requests: [Request!]!
+  candidates: [Candidate!]!
+}
+
+type Query {
+  requests: [Request]
+  request(id: ID!): Request
+  candidates(id: ID!): [Candidate!]!
+  candidate(id: ID!): Candidate!
+}
+
+type Mutation {
+  signup(email: String!, password: String!, username: String!, firstname: String, lastname: String): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+  createRequest(title: String!, content: String!): Request
+  createCandidate(content: String!, requestId: ID!): Candidate
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type Request {
+  id: ID!
+  title: String!
+  content: String!
+}
+
+type Candidate {
+  id: ID!
+  content: String!
+  request: Request!
+}
