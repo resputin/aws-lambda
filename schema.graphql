@@ -1,5 +1,5 @@
 type User {
-  id: ID!
+  _id: ID!
   email: String!
   requests: [Request!]!
   candidates: [Candidate!]!
@@ -7,13 +7,13 @@ type User {
 
 type Query {
   requests: [Request]
-  request(id: ID!): Request
-  candidates(id: ID!): [Candidate!]!
-  candidate(id: ID!): Candidate!
+  request(_id: ID!): Request
+  candidates(_id: ID!): [Candidate!]!
+  candidate(_id: ID!): Candidate!
 }
 
 type Mutation {
-  signup(email: String!, password: String!, username: String!, firstname: String, lastname: String): AuthPayload
+  signup(email: String!, password: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload
   createRequest(title: String!, content: String!): Request
   createCandidate(content: String!, requestId: ID!): Candidate
@@ -25,13 +25,13 @@ type AuthPayload {
 }
 
 type Request {
-  id: ID!
+  _id: ID!
   title: String!
   content: String!
 }
 
 type Candidate {
-  id: ID!
+  _id: ID!
   content: String!
   request: Request!
 }

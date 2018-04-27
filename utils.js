@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const config = require('./config');
 
 const authenticate = context => {
-  const Authorization = context.request.get('Authorization');
+  const Authorization = context.event.headers.Authorization;
 
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '');

@@ -1,13 +1,13 @@
-const { NODE_ENV, MONGODB_URI, SESSION_SECRET, PORT } = process.env;
+const { NODE_ENV, MONGO_DB_URL, SESSION_SECRET, PORT } = process.env;
 
 const CONFIG = {
   SESSION_SECRET,
-  MONGODB_URI,
+  MONGO_DB_URL,
   options: {
     port: PORT,
     endpoint: '/api',
     // disable playground in production
-    playground: NODE_ENV === 'development' ? '/playground' : false
+    // playground: NODE_ENV === 'development' ? '/playground' : false
   }
 };
 
