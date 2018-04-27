@@ -4,7 +4,7 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "start": "serverless offline",
+    "start": "serverless offline --useSeparateProcesses",
     "deploy": "serverless deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,10 +12,15 @@
   "author": "Kim Brandwijk <kim.brandwijk@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "graphql-yoga": "*"
+    "bcryptjs": "^2.4.3",
+    "co": "^4.6.0",
+    "dotenv": "^5.0.1",
+    "graphql-yoga": "*",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.0.16"
   },
   "devDependencies": {
     "serverless": "1.25.0",
-    "serverless-offline": "3.16.0"
+    "serverless-offline": "^3.20.3"
   }
 }
